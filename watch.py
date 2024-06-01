@@ -14,14 +14,16 @@ logging.basicConfig(filename='watch_scraper.log', level=logging.INFO,
                     format='%(asctime)s %(levelname)s:%(message)s')
 
 # 邮件配置
-EMAIL_ADDRESS = 'youremail'
-EMAIL_PASSWORD = 'yourpassword'
-TO_EMAIL = 'youremail'
-SMTP_SERVER = 'smtp.example.com'
+EMAIL_ADDRESS = 'your_email@example.com'
+EMAIL_PASSWORD = 'your_email_password'
+TO_EMAIL = 'recipient_email@example.com'
+SMTP_SERVER = 'smtp.your_email_provider.com'
 SMTP_PORT = 587
 
+
 # EdgeDriver路径
-service = Service('webdriverpath---')
+service = Service('path_to_your_msedgedriver.exe')
+
 
 # 配置Edge浏览器选项
 edge_options = Options()
