@@ -22,7 +22,7 @@ This script monitors the Apple Store for refurbished Apple Watch SE and Apple Wa
 
 1. Clone the repository:
     ```sh
-    git clone https://github.com/yourusername/apple-watch-monitor.git
+    git clone https://github.com/Alex-Su7/apple-watch-monitor.git
     cd apple-watch-monitor
     ```
 
@@ -62,9 +62,7 @@ The script will start monitoring the Apple Store for refurbished Apple Watch SE 
 
 Logs are written to `watch_scraper.log`. It contains information about the script's operation and errors for debugging purposes.
 
-## License
 
-This project is licensed under the MIT License.
 
 ---
 
@@ -92,7 +90,7 @@ This project is licensed under the MIT License.
 
 1. 克隆仓库：
     ```sh
-    git clone https://github.com/yourusername/apple-watch-monitor.git
+    git clone https://github.com/Alex-Su7/apple-watch-monitor.git
     cd apple-watch-monitor
     ```
 
@@ -132,6 +130,4 @@ python watch.py
 
 日志记录在 `watch_scraper.log` 文件中。它包含脚本操作和错误信息，以便调试使用。
 
-## 许可证
 
-此项目是根据 MIT 许可证授权的。
