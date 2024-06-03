@@ -14,16 +14,15 @@ logging.basicConfig(filename='watch_scraper.log', level=logging.INFO,
                     format='%(asctime)s %(levelname)s:%(message)s')
 
 # 邮件配置
-EMAIL_ADDRESS = 'your_email@example.com'
-EMAIL_PASSWORD = 'your_email_password'
-TO_EMAIL = 'recipient_email@example.com'
-SMTP_SERVER = 'smtp.your_email_provider.com'
+EMAIL_ADDRESS = '1175441676@qq.com'
+EMAIL_PASSWORD = 'bebdgvjynqfoihii'
+TO_EMAIL = '1175441676@qq.com'
+SMTP_SERVER = 'smtp.qq.com'
 SMTP_PORT = 587
 
-
 # EdgeDriver路径
-service = Service('path_to_your_msedgedriver.exe')
-
+service = Service('D:\\360data\\重要数据\\桌面\\edgedriver_win64\\msedgedriver.exe')
+service.service_args = ['--log-path=NUL']  # Windows 系统中用 NUL 代替 /dev/null
 
 # 配置Edge浏览器选项
 edge_options = Options()
@@ -32,6 +31,7 @@ edge_options.add_argument("--ignore-certificate-errors")  # 忽略SSL错误
 edge_options.add_argument("--ignore-ssl-errors=yes")
 edge_options.add_argument("--disable-gpu")
 edge_options.add_argument("--user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36 Edg/125.0.0.0")
+edge_options.add_argument("--log-level=3")  # 仅输出严重错误
 
 # 设置发送邮件的函数
 def send_email(subject, body, to_email):
@@ -92,10 +92,17 @@ def generate_html_table(data):
     html += '</table></body></html>'
     return html
 
+def print_statistics():
+    watch_info_list = get_apple_watch_info()
+    se_count = sum('SE' in item['name'] for item in watch_info_list)
+    s9_count = sum('Series 9' in item['name'] for item in watch_info_list)
+    print(f"当前商城内的翻新SE手表总数量为：【{se_count}】，当前商城内的翻新S9手表总数量为：【{s9_count}】")
+
 def monitor_website(interval=60):
     known_products = get_apple_watch_info()
     send_email("Initial Apple Watch Info", generate_html_table(known_products), TO_EMAIL)
 
+    count = 0
     while True:
         time.sleep(interval)
         current_products = get_apple_watch_info()
@@ -105,6 +112,10 @@ def monitor_website(interval=60):
         if new_products:
             send_email("New Apple Watch Available", generate_html_table(new_products), TO_EMAIL)
             known_products.extend(new_products)
+
+        count += interval
+        if count % 300 == 0:  # 每5分钟统计一次
+            print_statistics()
 
 try:
     # 运行监视程序
