@@ -14,14 +14,14 @@ logging.basicConfig(filename='watch_scraper.log', level=logging.INFO,
                     format='%(asctime)s %(levelname)s:%(message)s')
 
 # 邮件配置
-EMAIL_ADDRESS = '1175441676@qq.com'
-EMAIL_PASSWORD = 'bebdgvjynqfoihii'
-TO_EMAIL = '1175441676@qq.com'
+EMAIL_ADDRESS = 'your_email@qq.com'
+EMAIL_PASSWORD = 'your_email_password'
+TO_EMAIL = 'your_email@qq.com'
 SMTP_SERVER = 'smtp.qq.com'
 SMTP_PORT = 587
 
 # EdgeDriver路径
-service = Service('D:\\360data\\重要数据\\桌面\\edgedriver_win64\\msedgedriver.exe')
+service = Service('path_to_your_edgedriver.exe')
 service.service_args = ['--log-path=NUL']  # Windows 系统中用 NUL 代替 /dev/null
 
 # 配置Edge浏览器选项
